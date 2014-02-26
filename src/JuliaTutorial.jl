@@ -1,5 +1,8 @@
 module JuliaTutorial
 
+using Match
+
+export Menu
  
 
  include("LinearAlgebra.jl")
@@ -8,6 +11,6 @@ module JuliaTutorial
  include("RecSys.jl")
  include("PrepCorpus.jl")
  include("PrepRD.jl")
-
+ include("menu.jl")
 
 end
