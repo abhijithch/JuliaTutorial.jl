@@ -11,7 +11,7 @@ function Menu()
     @match choice begin
         49 => {LinearAlgebra()}
         50 => {MatrixFactorizations()}
-        51 => {TextMining()}
+        51 => {include("TextMining.jl")}
         52 => {RecSys()}
     end
 end
