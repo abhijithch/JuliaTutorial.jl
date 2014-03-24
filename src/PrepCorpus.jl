@@ -1,4 +1,4 @@
-
+#From TextAnalysis.jl Package.
 function PrepCorpus(dirname::String,DocType::Type)
     # Recursive descent of directory
     # Add all non-hidden files to Corpus
