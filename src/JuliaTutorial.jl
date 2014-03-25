@@ -2,15 +2,12 @@ module JuliaTutorial
 
 using Match
 
-export Menu,LinearAlgebra
- 
+export Menu
 
-include("LinearAlgebra.jl")
-#include("MatrixFactorizations.jl")
-#include("TextMining.jl")
-#include("RecSys.jl")
-#include("PrepCorpus.jl")
-#include("PrepRD.jl")
  include("menu.jl")
+ include("LinearAlgebra.jl")
+ #include("MatrixFactorizations.jl")
+ include("TextMining.jl")
+ #include("RecSys.jl")
 
 end

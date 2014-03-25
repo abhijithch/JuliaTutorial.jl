@@ -9,10 +9,15 @@ function Menu()
     choice=ReadChoice()
     #println(typeof(choice))
     @match choice begin
-        49 => {LinearAlgebra()}
-        50 => {MatrixFactorizations()}
-        51 => {include("TextMining.jl")}
-        52 => {RecSys()}
+        #49 => {LinearAlgebra()}
+        #49 => {require("home/abhijith/.julia/JuliaTutorial/src/LinearAlgebra.jl")}
+        #50 => {include("MatrixFactorizations.jl")}
+        #51 => {include("TextMining.jl")}
+        #52 => {include("RecSys.jl")}
+        49 => println("You can include the module by typing: using LinearAlgebra")
+        50 => println("You can include the module by typing: using JuliaTutorial.MatrixFactoriations")
+        51 => println("You can include the module by typing: using JuliaTutorial.TextMining")
+        52 => println("You can include the module by typing: using JuliaTutorial.RecSys")
     end
 end
 
@@ -42,3 +47,6 @@ function ReadChoice()
     return cc
     
 end
+
+#Menu()
+println("Please use the method JuliaTutorial.Menu().")

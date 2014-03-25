@@ -1,4 +1,12 @@
 
+#type Data
+#    D_Corpus::Corpus
+#    Q_Corpus::Corpus
+#    DocLEx::Lexicon
+#    D::
+#    
+#end
+
 function VecSpaceModelCorp(Q_C::Corpus,D_C::Corpus)
     #Q_c and D_c are the query and Document corpuses.
     PreProcess!(Q_C)
@@ -58,7 +66,8 @@ function VecSpaceModelCorp(Q_C::Corpus,D_C::Corpus)
     end
     qindex=tempArray[2:nq+1]
     (RFinal,PFinal)=average_RecPrec(Reca_VSM,Prec_VSM,qindex)
-    plot_PR(RFinal,PFinal)
+    #plotNew_RecPrec(RFinal,PFinal)
+    return RFinal,PFinal
 end
 
 #The following function takes in the TermDocumentMatrix directly.

@@ -17,11 +17,14 @@ end
 
 Colors=Array{String,1}
 Colors=["red","blue","green","black","cyan","magenta","yellow"]
+ColorCount=0
+PlotCount=0
+
 
 function plotNew_RecPrec(Rec::Array{Float64,1},Prec::Array{Float64,1},strMethod::String)
     fig = figure()
-    ColorCount=1
-    PlotCount=1
+    global ColorCount+=1
+    global PlotCount+=1
     p1=plot(Rec,Prec,color=Colors[ColorCount],linewidth=2.0,linestyle="--")
     axis("tight") # Fit the axis tightly to the plot
     ax = gca() # Get the handle of the current axis
@@ -30,13 +33,19 @@ function plotNew_RecPrec(Rec::Array{Float64,1},Prec::Array{Float64,1},strMethod:
     xlabel("Recall")
     ylabel("Precision")
     grid("on")
-    #legend(loc="upper right",fancybox="true")
-    legend([p1],[string(strMethod)])
+    push!(PlotIDs,string(PlotCount))
+    push!(MethodIDs,strMethod)
+    legend(loc="upper right",fancybox="true")
 end
 
-function plotAdd_RecPrec{Rec::Array{Float64,1},Prec::Array{Float64,1},strMethod::String}
-    ColorCount++
-    PlotID=string("p",PlotCount++)
+function plotAdd_RecPrec(Rec::Array{Float64,1},Prec::Array{Float64,1},strMethod::String)
+    global ColorCount+=1
+    global PlotCount+=1
+    PlotID=string("p",PlotCount)
     PlotID=plot(Rec,Prec,color=Colors[ColorCount],linewidth=2.0,linestyle="--")
-    legend([PlotID],[string(strMethod)])
+    push!(PlotIDS,PlotID)
+    push!(MethodIDs,strMethod)
+    #legend(PlotIDs,MethodIDs)
+    legend(loc="upper right",fancybox="true")
 end
+

@@ -63,6 +63,11 @@ function SVDModelTDM(A::Array{Float64,2})
 end
 
 
+function SVDModelCorpus(A::Array{Float64,2})
+    
+end
+
+
 
 function SVDModelQueries(qNum::Int64,A::Array{Float64,2})
     T=PrepTest()
@@ -78,7 +83,6 @@ function SVDModelQueries(qNum::Int64,A::Array{Float64,2})
     D_r=zeros(1,lt)
     D_t=zeros(1,lt)
     N_r=zeros(1,lt)
-    
     tempArray=Array{Int,1}
     #qindex=zeros(1)
     z=qNum    
@@ -100,7 +104,6 @@ function SVDModelQueries(qNum::Int64,A::Array{Float64,2})
     for i=1:nd
         Costheta_SVD[z:z,i:i]=q'*DS[:,i]/(norm(q,2)*norm(DS[:,i],2))
     end
-    
     for k=1:1:lt
         function testf1(x)
             x>tol[k]
