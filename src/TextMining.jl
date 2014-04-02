@@ -8,7 +8,7 @@ using PyPlot
 
 export PrepQueriesCorpus,PrepDocCorpus,PreProcess!,PrepTest
 export VecSpaceModelCorp,VecSpaceModelTDM,VecSpaceModelQueries
-export SVDModelQueries,TrySVD
+export SVDModel,TrySVD
 export KMeansTDM
 export plotNew_RecPrec,plotAdd_RecPrec
 

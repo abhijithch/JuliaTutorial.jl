@@ -25,7 +25,7 @@ function plotNew_RecPrec(Rec::Array{Float64,1},Prec::Array{Float64,1},strMethod:
     fig = figure()
     global ColorCount+=1
     global PlotCount+=1
-    p1=plot(Rec,Prec,color=Colors[ColorCount],linewidth=2.0,linestyle="--")
+    p1=plot(Rec,Prec,color=Colors[ColorCount],linewidth=2.0,linestyle="--",label=strMethod)
     axis("tight") # Fit the axis tightly to the plot
     ax = gca() # Get the handle of the current axis
     Title=string("Precision Vs Recall")
@@ -33,8 +33,8 @@ function plotNew_RecPrec(Rec::Array{Float64,1},Prec::Array{Float64,1},strMethod:
     xlabel("Recall")
     ylabel("Precision")
     grid("on")
-    push!(PlotIDs,string(PlotCount))
-    push!(MethodIDs,strMethod)
+    #push!(PlotIDs,string(PlotCount))
+    #push!(MethodIDs,strMethod)
     legend(loc="upper right",fancybox="true")
 end
 
@@ -42,7 +42,7 @@ function plotAdd_RecPrec(Rec::Array{Float64,1},Prec::Array{Float64,1},strMethod:
     global ColorCount+=1
     global PlotCount+=1
     PlotID=string("p",PlotCount)
-    PlotID=plot(Rec,Prec,color=Colors[ColorCount],linewidth=2.0,linestyle="--")
+    PlotID=plot(Rec,Prec,color=Colors[ColorCount],linewidth=2.0,linestyle="--",label=strMethod)
     push!(PlotIDS,PlotID)
     push!(MethodIDs,strMethod)
     #legend(PlotIDs,MethodIDs)

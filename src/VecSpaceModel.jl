@@ -43,8 +43,6 @@ function VecSpaceModelCorp(Q_C::Corpus,D_C::Corpus)
         tempArray=vcat(tempArray,z)
         #q=Q[:,z]
         for i=1:nd
-            #    #Here we calculate the angle between the query and each of the 
-            #    #1033 documensts. 
             temp_cos=Q[:,z]'*D[:,i]/(norm(Q[:,z],2)*norm(D[:,i],2))
             Costheta[z:z,i:i]=temp_cos
         end
@@ -94,7 +92,7 @@ function VecSpaceModelTDM(A::Array{Float64,2},nq::Int)
     qindex=zeros(nq)
     for z=1:nq
         qindex[z]=z
-        println("z=",z)
+        #println("z=",z)
         for i=1:nd
             #    #Here we calculate the angle between the query and each of the 
             #    #1033 documensts. 
