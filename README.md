@@ -21,7 +21,7 @@ alternatively, this also could be directly cloned from github as follows,
 ```
 git clone https://github.com/abhi123link/JuliaTutorial.jl.git
 ```
-in whic case the dependent packages will have to be installed. 
+in which case the dependent packages will have to be installed. If installed through the package manager, ```Pkg.clone()``` the dependent packages would be automatically installed. 
 
 # Text Mining
 =============
