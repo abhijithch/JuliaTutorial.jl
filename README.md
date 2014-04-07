@@ -9,7 +9,7 @@ This is a Julia based tutorial covering the following topics:
 * Introduction to Text Mining 
 * Introduction to Recommender Systems
 
-This package has each of the above mentioned topics as sub-modules. However as of now only Text Mining tutorial is available, and the rest are under way. 
+This package has each of the above mentioned topics as sub-modules. However as of now only Text Mining tutorial is available, and the rest are under construction. 
 
 # Installation
 This is an unregistered package, and can be installed in either of the following two ways:
@@ -29,5 +29,9 @@ To start using the package, first do ```using JuliaTutorial```. Then according t
 # Text Mining
 =============
 
-Please refer to docs/Julia_TextMining.pdf for the theoretical concepts.
+
+Please refer to docs/Julia_TextMining.pdf for the theoretical concepts. This Text Mining module depends heavily on ```TextAnalysis.jl```, for most of the preprocessing and preparation of the Term Document Matrix. 
+
+# Preparation
+
  
