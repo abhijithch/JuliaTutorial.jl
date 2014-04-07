@@ -4,7 +4,24 @@
 
 This is a Julia based tutorial covering the following topics:
 
-- [x] Introduction to Linear Algebra
-- [x] Applications of Matrix Factorizations
-- [] Introduction to Text Mining 
-- [x] Introduction to Recommender Systems
+* Introduction to Linear Algebra
+* Applications of Matrix Factorizations
+* Introduction to Text Mining 
+* Introduction to Recommender Systems
+
+This package has each of the above mentioned topics as sub-modules. However as of now only Text Mining tutorial is available, and the rest are under way. 
+
+# Installation
+This is an unregistered package, and can be installed in the following two ways:
+
+```
+Pkg.clone(https://github.com/abhi123link/JuliaTutorial.jl.git)
+```
+  
+  
+
+# Text Mining
+=============
+
+Please refer to docs/Julia_TextMining.pdf for the theoretical concepts. Here we can see how the example
+ 
