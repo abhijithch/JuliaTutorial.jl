@@ -13,11 +13,11 @@ export plotNew_RecPrec,plotAdd_RecPrec,plot_DrDtNr
 export Results, NewDataCorpus, NewDataMatrix, Normalize, CosTheta, FindResults
 
 include("Preparation.jl")
+include("utils.jl")
+include("AverageRP.jl")
+include("PlotResults.jl")
 include("VecSpaceModel.jl")
 include("LSIModel.jl")
 include("KMeansModel.jl")
-include("AverageRP.jl")
-include("PlotResults.jl")
-include("utils.jl")
 
 end
