@@ -12,13 +12,16 @@ This is a Julia based tutorial covering the following topics:
 This package has each of the above mentioned topics as sub-modules. However as of now only Text Mining tutorial is available, and the rest are under way. 
 
 # Installation
-This is an unregistered package, and can be installed in the following two ways:
+This is an unregistered package, and can be installed in either of the following two ways:
 
 ```
 Pkg.clone(https://github.com/abhi123link/JuliaTutorial.jl.git)
 ```
-  
-  
+alternatively, this also could be directly cloned from github as follows,
+```
+git clone https://github.com/abhi123link/JuliaTutorial.jl.git
+```
+in whic case the dependent packages will have to be installed. 
 
 # Text Mining
 =============
