@@ -29,5 +29,5 @@ To start using the package, first do ```using JuliaTutorial```. Then according t
 # Text Mining
 =============
 
-Please refer to docs/Julia_TextMining.pdf for the theoretical concepts. 
+Please refer to docs/Julia_TextMining.pdf for the theoretical concepts.
  
