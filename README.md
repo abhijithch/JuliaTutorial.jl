@@ -35,3 +35,10 @@ Please refer to docs/Julia_TextMining.pdf for the theoretical concepts. This Tex
 # Preparation
 
 The first thing to do is generate a corpus from collection of textual data. In this module we work with documents as the source of textual data. These documents could be collection of research articles, web-pages etc. The function ```PrepDocCorpus(dirname::String,DocType::Type)``` prepares a corpus, i.e., collection of all the documents under one entity. It also standardizes all the documents to a singly type, specified by ```DocType```. The types could be any one of ```StringDocument```, ```TokenDocument``` or ```NGramDocument```. The collection of all the documents must be present in the directory specified by ```dirname```.
+
+The queries corpus are to be obtained using the function, ```PrepQueriesCorpus(NoQueries::Int,QueryFile::String)```. The ```NoQueries``` number of queries are stored in a single text file, ```QueryFile```. Each queries are delimited by 2 blank lines. 
+
+The ```PreProcess!(crps::Corpus)``` function does all the preprocessing like removal of articles, pronouns, prepositions and stop words.
+
+
+
