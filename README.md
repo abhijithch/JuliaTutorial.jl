@@ -30,8 +30,8 @@ To start using the package, first do ```using JuliaTutorial```. Then according t
 =============
 
 
-Please refer to docs/Julia_TextMining.pdf for the theoretical concepts. This Text Mining module depends heavily on ```TextAnalysis.jl```, for most of the preprocessing and preparation of the Term Document Matrix. 
+Please refer to docs/Julia_TextMining.pdf for the theoretical concepts. This Text Mining module depends on ```TextAnalysis.jl```, for most of the preprocessing and preparation of the Term Document Matrix. 
 
 # Preparation
 
- 
+The first thing to do is generate a corpus from collection of textual data. In this module we work with documents as the source of textual data. These documents could be collection of research articles, and the function ```PrepDocCorpus(dirname::String,DocType::Type)``` prepares a corpus, i.e., collection of all the documents under one entity. It also standardizes all the documents to a singly type, specified by ```DocType```. The types could be any of ```StringDocument```, ```TokenDocument``` or ```NGramDocument```.
