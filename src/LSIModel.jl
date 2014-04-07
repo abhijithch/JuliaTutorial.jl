@@ -65,7 +65,7 @@ function SVDModel(A::Array{Float64,2},nq::Int64,rank::Int64)
     DQ.A=A
     DQ.NumQueries=nq
     (ma,na)=size(DQ.A)
-    D=DQ.A[:,DQ.NumQueries+1:1063]
+    D=DQ.A[:,DQ.NumQueries+1:na]
     Q=DQ.A[:,1:DQ.NumQueries]
     (md,nd)=size(D)
     (mq,nq)=size(Q)
@@ -74,13 +74,14 @@ function SVDModel(A::Array{Float64,2},nq::Int64,rank::Int64)
     tol=linspace(0.01,0.99,20)
     lt=length(tol)
     LSI_TDM_Result=Results()
-    LSI_TDM_Result.Dr=zeros(nq,lt)
-    LSI_TDM_Result.Dt=zeros(nq,lt)
-    LSI_TDM_Result.Nr=zeros(nq,lt)
-    LSI_TDM_Result.Rec=zeros(nq,lt)
-    LSI_TDM_Result.Prec=zeros(nq,lt)
-    LSI_TDM_Result.RecFinal=zeros(lt)
-    LSI_TDM_Result.PrecFinal=zeros(lt)
+    #LSI_TDM_Result.Dr=zeros(nq,lt)
+    #LSI_TDM_Result.Dt=zeros(nq,lt)
+    #LSI_TDM_Result.Nr=zeros(nq,lt)
+    #LSI_TDM_Result.Rec=zeros(nq,lt)
+    #LSI_TDM_Result.Prec=zeros(nq,lt)
+    #LSI_TDM_Result.RecFinal=zeros(lt)
+    #LSI_TDM_Result.PrecFinal=zeros(lt)
+    LSI_TDM_Result=InitResults!(LSI_TDM_Result,nq,lt)
     #Normalize D and Q
     D_norm=Normalize(D)
     Q_norm=Normalize(Q)
@@ -131,45 +132,45 @@ function SVDModel(Q_C::Corpus,D_C::Corpus,rank::Int64)
 end
 
 function SVDModel(QueryNum::Int64,A::Array{Float64,2},NumQueries::Int64,rank::Int64)
-    D=A[:,NumQueries+1:1063]
-    Q::Array{Any,2}
-    Q=A[:,QueryNum]
+    DQ=DataMatrix()
+    DQ.A=A
+    DQ.NumQueries=NumQueries
+    (ma,na)=size(DQ.A)
+    D=DQ.A[:,DQ.NumQueries+1:1063]
+    Q=DQ.A[:,QueryNum]
+    Qt=Q'   
+    (nq,mq)=size(Qt)
     (md,nd)=size(D)
-    (nq,md)=size(Q')
-    Costheta=zeros(1,nd)
+    Costheta_SVD=zeros(nq,nd)
     #Set a tol level
     tol=linspace(0.01,0.99,20)
     lt=length(tol)
     LSI_1Query_Result=Results()
-    LSI_1Query_Result.Dr=zeros(nq,lt)
-    LSI_1Query_Result.Dt=zeros(nq,lt)
-    LSI_1Query_Result.Nr=zeros(nq,lt)
-    LSI_1Query_Result.Rec=zeros(nq,lt)
-    LSI_1Query_Result.Prec=zeros(nq,lt)
-    LSI_1Query_Result.RecFinal=zeros(lt)
-    LSI_1Query_Result.PrecFinal=zeros(lt)
-    z=qNum    
-    #qindex[z]=z
+    LSI_1Query_Result=InitResults!(LSI_1Query_Result,nq,lt)
     D_norm=Normalize(D)
-    Q_norm=Normalize(Q)
+    Q_norm=Normalize(Qt')
     DS,QS=DocQuerySpace(D_norm,rank)
     qindex=zeros(nq)
-    q=QS'*Q_norm[:,z]
-    for i=1:nd
-        Costheta_SVD[z:z,i:i]=q'*DS[:,i]/(norm(q,2)*norm(DS[:,i],2))
+    for z=1:1:nq
+        qindex[z]=z
+        q=QS'*Q_norm[:,z]
+        for i=1:nd
+            Costheta_SVD[z:z,i:i]=q'*DS[:,i]/(norm(q,2)*norm(DS[:,i],2))
+        end
+        for k=1:1:lt
+            (LSI_1Query_Result.Dr[z,k],
+             LSI_1Query_Result.Dt[z,k],
+             LSI_1Query_Result.Nr[z,k],
+             LSI_1Query_Result.Rec[z,k],
+             LSI_1Query_Result.Prec[z,k])=
+            FindResults(k,z,Costheta_SVD[z,:],tol[k])
+        end
     end
-    for k=1:1:lt
-        (LSI_1Query_Result.Dr[z,k],
-         LSI_1Query_Result.Dt[z,k],
-         LSI_1Query_Result.Nr[z,k],
-         LSI_1Query_Result.Rec[z,k],
-         LSI_1Query_Result.Prec[z,k])=
-        FindResults(k,z,Costheta_SVD[z,:],tol[k])
-    end
-    (LSI_1Query_Result.RecFinal,LSI_1Query_Result.PrecFinal)=average_RecPrec(LSI_TDM_Result.Rec,LSI_TDM_Result.Prec,qindex)
-    return LSI_1Query_Result.RecFinal,LSI_1Query_Result.PrecFinal
-    #plotNew_RecPrec(LSI_TDM_Result.RecFinal,LSI_TDM_Result.PrecFinal,"LSI")
+    (LSI_1Query_Result.RecFinal,LSI_1Query_Result.PrecFinal)=average_RecPrec(LSI_1Query_Result.Rec,LSI_1Query_Result.Prec,qindex)
+    return LSI_1Query_Result
+    #plotNew_RecPrec(vec(LSI_1Query_Result.Rec),vec(LSI_1Query_Result.Prec),"LSI")
 end
+
 
 function TrySVD(A::Array{Float64,2},k::Int64)
     (U,S,V)=svd(A)

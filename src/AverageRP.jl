@@ -53,8 +53,9 @@ function average_RecPrec(rec1::Array{Float64,2},prec1::Array{Float64,2},kind)
             x>0
         end
         jj=find(testf4,pri[i,:])
+        println(jj)
         if length(jj) == 0
-            precision_Final[i]=nan
+            precision_Final[i]=NaN
         else
             precision_Final[i]=sum(pri[i,jj])/length(jj)
         end

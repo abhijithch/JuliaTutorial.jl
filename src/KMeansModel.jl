@@ -1,54 +1,102 @@
+T=PrepTest()
 
-#K-means clustering of the documents
-
-function KMeansTDM(A::Array{Float64,2})
-    D=A[:,31:1063]
-    Q=A[:,1:30]
-    KM=kmeans(D,50)
+function KMeansModel(A::Array{Float64,2},NumQueries::Int64,Clusters::Int64)
+    DQ=DataMatrix()
+    DQ.A=A
+    DQ.NumQueries=NumQueries
+    (ma,na)=size(DQ.A)
+    D=DQ.A[:,DQ.NumQueries+1:na]
+    Q=DQ.A[:,1:NumQueries]
+    KM=kmeans(D,Clusters)
     C=KM.centers
     (P,R)=qr(C)
-    DS = P'*D #Using the P we find the projections of the documents 
-    qindex=zeros(1,30)
-    T=PrepTest()
-    #Now calculate the cos(theta), for all the queries-documents combination
-    #Loop for all the queries and find the cosine of the angle.
+    DS = P'*D #Using the P we find the projections of the documents
     (md,nd)=size(D)
-    println(size(Q))
     (mq,nq)=size(Q)
     Costheta_KM=zeros(nq,nd)
     #Set a tol level
     tol=linspace(0.01,0.99,20)
     lt=length(tol)
-    D_r=zeros(nq,lt)
-    D_t=zeros(nq,lt)
-    N_r=zeros(nq,lt)
-    Prec_KM=zeros(nq,lt)
-    Reca_KM=zeros(nq,lt)
+    KM_TDM_Result=Results()
+    KM_TDM_Result=InitResults!(KM_TDM_Result,nq,lt)
     qindex=zeros(nq)
-    for z=1:nq
+    for z=1:1:nq
         qindex[z]=z
         q=P'*Q[:,z]
         for i=1:nd
-            #    #Here we calculate the angle between the query and each of the 
-            #    #1033 documensts. 
             Costheta_KM[z:z,i:i]=q'*DS[:,i]/(norm(q,2)*norm(DS[:,i],2))
         end
         for k=1:1:lt
-            function testf1(x)
-                x>tol[k]
-            end
-            ii=find(testf1,Costheta_KM[z:z,:])
-            function testf2(x)
-                x==z
-            end
-            b=find(testf2,T[:,1])
-            D_r[z,k]=length(intersect(ii,T[b,2]))
-            D_t[z,k]=length(ii)
-            N_r[z,k]=length(b)
-            Prec_KM[z,k] = (D_r[z,k]/D_t[z,k])*100;
-            Reca_KM[z,k] = (D_r[z,k]/N_r[z,k])*100;
+            (KM_TDM_Result.Dr[z,k],
+             KM_TDM_Result.Dt[z,k],
+             KM_TDM_Result.Nr[z,k],
+             KM_TDM_Result.Rec[z,k],
+             KM_TDM_Result.Prec[z,k])=
+             FindResults(k,z,Costheta_KM[z,:],tol[k])
         end
     end
-    (RFinal,PFinal)=average_RecPrec(Reca_KM,Prec_KM,qindex)
-    return RFinal,PFinal
+    (KM_TDM_Result.RecFinal,KM_TDM_Result.PrecFinal)=average_RecPrec(KM_TDM_Result.Rec,KM_TDM_Result.Prec,qindex)
+    return KM_TDM_Result
+end
+
+function KMeansModel(QueryNum::Int64,A::Array{Float64,2},NumQueries::Int64,Clusters::Int64)
+    DQ=DataMatrix()
+    DQ.A=A
+    DQ.NumQueries=NumQueries
+    (ma,na)=size(DQ.A)
+    D=DQ.A[:,DQ.NumQueries+1:1063]
+    Q=DQ.A[:,QueryNum]
+    KM=kmeans(D,50)
+    C=KM.centers
+    (P,R)=qr(C)
+    DS = P'*D #Using the P we find the projections of the documents
+    (md,nd)=size(D)
+    (mq,nq)=size(Q)
+    Costheta_KM=zeros(nq,nd)
+    #Set a tol level
+    tol=linspace(0.01,0.99,20)
+    lt=length(tol)
+    KM_1Query_Result=Results()
+    KM_1Query_Result=InitResults!(KM_TDM_Result,nq,lt)
+    qindex=zeros(nq)
+    for z=1:1:nq
+        qindex[z]=z
+        q=P'*Q[:,z]
+        for i=1:nd
+            Costheta_KM[z:z,i:i]=q'*DS[:,i]/(norm(q,2)*norm(DS[:,i],2))
+        end
+        for k=1:1:lt
+            (KM_1Query_Result.Dr[z,k],
+             KM_1Query_Result.Dt[z,k],
+             KM_1Query_Result.Nr[z,k],
+             KM_1Query_Result.Rec[z,k],
+             KM_1Query_Result.Prec[z,k])=
+             FindResults(k,z,Costheta_KM[z,:],tol[k])
+        end
+    end
+    (KM_1Query_Result.RecFinal,KM_1Query_Result.PrecFinal)=average_RecPrec(KM_1Query_Result.Rec,KM_1Query_Result.Prec,qindex)
+    return KM_1Query_Result
+end
+
+function KMeansModel(Q_C::Corpus,D_C::Corpus,Clusters::Int64)
+    #Q_c and D_c are the query and Document corpuses.
+    PreProcess!(Q_C)
+    PreProcess!(D_C)
+    #Compulsory update the lexicon, to identify the keywords
+    update_lexicon!(Q_C)
+    update_lexicon!(D_C)
+    #Get the lexicon of the documents.
+    DocLex=lexicon(D_C)
+    #Cant use the above as query vectors since, the queries must also be wrt
+    #Documents lexicon, and hence the dimensions will match
+    D=full(tdm(D_C))
+    (md,nd)=size(D)
+    nq=length(Q_C.documents)
+    Q=zeros(md,nq)
+    for j=1:nq
+        Q[:,j]=dtv(Q_C.documents[j],DocLex)'
+    end
+    QD=[Q D]
+    r=KmeansModel(QD,nq,Clusters)
+    return r
 end
