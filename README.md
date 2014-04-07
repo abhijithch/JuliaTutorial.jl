@@ -23,8 +23,11 @@ git clone https://github.com/abhi123link/JuliaTutorial.jl.git
 ```
 in which case the dependent packages will have to be installed. If installed through the package manager, ```Pkg.clone()``` the dependent packages would be automatically installed. 
 
+# Usage
+To start using the package, first do ```using JuliaTutorial```. Then according to the options given, include the sub-modules by ```using JuliaTutorial.Textmining``` to enable all the functions of Text Mining tutorial. 
+
 # Text Mining
 =============
 
-Please refer to docs/Julia_TextMining.pdf for the theoretical concepts. Here we can see how the example
+Please refer to docs/Julia_TextMining.pdf for the theoretical concepts.
  
