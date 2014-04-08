@@ -32,7 +32,10 @@ To start using the package, first do ```using JuliaTutorial```. Then according t
 Please refer to docs/Julia_TextMining.pdf for the theoretical concepts. This Text Mining module depends on ```TextAnalysis.jl```, for most of the preprocessing and preparation of the Term Document Matrix. 
 
 ### Preparation
-The queries corpus are to be obtained using the function, ```PrepQueriesCorpus(NoQueries::Int,QueryFile::String)```. The ```NoQueries``` number of queries are stored in a single text file, ```QueryFile```. Each queries are delimited by 2 blank lines. 
+
+The first thing to do is generate a corpus from collection of textual data. In this module we work with documents as the source of textual data. These documents could be collection of research articles, HTML files etc, and the function ```PrepDocCorpus(dirname::String,DocType::Type)``` prepares a corpus, i.e., collection of all the documents under one entity. It also standardizes all the documents to a singly type, specified by ```DocType```. The types could be any of ```StringDocument```, ```TokenDocument``` or ```NGramDocument```.
+
+The query corpus are to be obtained using the function, ```PrepQueriesCorpus(NoQueries::Int,QueryFile::String)```. The ```NoQueries``` number of queries are stored in a single text file, ```QueryFile```. Each queries are delimited by 2 blank lines. 
 
 The ```PreProcess!(crps::Corpus)``` function does all the preprocessing like removal of articles, pronouns, prepositions and stop words.
 
