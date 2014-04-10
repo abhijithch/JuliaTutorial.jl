@@ -27,7 +27,7 @@ type NewDataMatrix
 end
 
 #Initializes the Results type with zeros
-function InitResults!(R::Results,nq::Int64,lt::Int64)
+function InitResults!(R::TMResults,nq::Int64,lt::Int64)
     R.Dr=zeros(nq,lt)
     R.Dt=zeros(nq,lt)
     R.Nr=zeros(nq,lt)
