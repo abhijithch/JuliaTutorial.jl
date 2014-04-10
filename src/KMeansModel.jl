@@ -1,7 +1,7 @@
 T=PrepTest()
 
 function KMeansModel(A::Array{Float64,2},NumQueries::Int64,Clusters::Int64)
-    DQ=DataMatrix()
+    DQ=NewDataMatrix()
     DQ.A=A
     DQ.NumQueries=NumQueries
     (ma,na)=size(DQ.A)
@@ -40,7 +40,7 @@ function KMeansModel(A::Array{Float64,2},NumQueries::Int64,Clusters::Int64)
 end
 
 function KMeansModel(QueryNum::Int64,A::Array{Float64,2},NumQueries::Int64,Clusters::Int64)
-    DQ=DataMatrix()
+    DQ=NewDataMatrix()
     DQ.A=A
     DQ.NumQueries=NumQueries
     (ma,na)=size(DQ.A)
