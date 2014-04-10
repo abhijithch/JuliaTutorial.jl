@@ -67,7 +67,7 @@ function PrepTest(path::ASCIIString)
 end
 
 function PrepTest()
-    temp=readdlm("./Test.txt",' ';has_header=false)
+    temp=readdlm("./test/data/Test.txt",' ';has_header=false)
     T=hcat(temp[:,1],temp[:,4])
     return T
 end
