@@ -3,7 +3,7 @@ function GetPath()
     return path
 end
 
-type Results
+type TMResults
     Dr::Array{Float64,2}
     Dt::Array{Float64,2}
     Nr::Array{Float64,2}
