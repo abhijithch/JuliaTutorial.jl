@@ -12,7 +12,7 @@ function VSMModel(A::Array{Float64,2},nq::Int64)
     #Set a tol level
     tol=linspace(0.01,0.99,20)
     lt=length(tol)
-    VSM_TDM_Result=Results()
+    VSM_TDM_Result=TMResults()
     VSM_TDM_Result=InitResults!(VSM_TDM_Result,nq,lt)
     qindex=zeros(nq)
     for z=1:1:nq
@@ -70,7 +70,7 @@ function VSMModel(QueryNum::Int64,A::Array{Float64,2},NumQueries::Int64)
     #Set a tol level
     tol=linspace(0.01,0.99,20)
     lt=length(tol)
-    VSM_1Query_Result=Results()
+    VSM_1Query_Result=TMResults()
     VSM_1Query_Result=InitResults!(VSM_1Query_Result,nq,lt)
     qindex=zeros(nq)
     for z=1:1:nq

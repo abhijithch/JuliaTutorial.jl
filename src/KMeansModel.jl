@@ -17,7 +17,7 @@ function KMeansModel(A::Array{Float64,2},NumQueries::Int64,Clusters::Int64)
     #Set a tol level
     tol=linspace(0.01,0.99,20)
     lt=length(tol)
-    KM_TDM_Result=Results()
+    KM_TDM_Result=TMResults()
     KM_TDM_Result=InitResults!(KM_TDM_Result,nq,lt)
     qindex=zeros(nq)
     for z=1:1:nq
@@ -56,7 +56,7 @@ function KMeansModel(QueryNum::Int64,A::Array{Float64,2},NumQueries::Int64,Clust
     #Set a tol level
     tol=linspace(0.01,0.99,20)
     lt=length(tol)
-    KM_1Query_Result=Results()
+    KM_1Query_Result=TMResults()
     KM_1Query_Result=InitResults!(KM_TDM_Result,nq,lt)
     qindex=zeros(nq)
     for z=1:1:nq
