@@ -1,6 +1,6 @@
 T=PrepTest()
 
-function KMeansModel(A::Array{Float64,2},NumQueries::Int64,Clusters::Int64)
+function KMeansModel(A::Array{Float64,2},NumQueries::Int,Clusters::Int)
     DQ=NewDataMatrix()
     DQ.A=A
     DQ.NumQueries=NumQueries
@@ -39,7 +39,7 @@ function KMeansModel(A::Array{Float64,2},NumQueries::Int64,Clusters::Int64)
     return KM_TDM_Result
 end
 
-function KMeansModel(QueryNum::Int64,A::Array{Float64,2},NumQueries::Int64,Clusters::Int64)
+function KMeansModel(QueryNum::Int,A::Array{Float64,2},NumQueries::Int,Clusters::Int)
     DQ=NewDataMatrix()
     DQ.A=A
     DQ.NumQueries=NumQueries
@@ -78,7 +78,7 @@ function KMeansModel(QueryNum::Int64,A::Array{Float64,2},NumQueries::Int64,Clust
     return KM_1Query_Result
 end
 
-function KMeansModel(Q_C::Corpus,D_C::Corpus,Clusters::Int64)
+function KMeansModel(Q_C::Corpus,D_C::Corpus,Clusters::Int)
     #Q_c and D_c are the query and Document corpuses.
     PreProcess!(Q_C)
     PreProcess!(D_C)

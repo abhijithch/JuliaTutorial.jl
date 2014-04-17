@@ -1,5 +1,5 @@
 
-function DocQuerySpace(A::Array{Float64,2},k::Int64)
+function DocQuerySpace(A::Array{Float64,2},k::Int)
     (U1,S1,V1)=svd(A)
     U=U1[:,1:k]
     S=diagm(S1[1:k])
@@ -10,7 +10,7 @@ end
 
 T=PrepTest()
 
-function SVDModel(A::Array{Float64,2},nq::Int64,rank::Int64)
+function SVDModel(A::Array{Float64,2},nq::Int,rank::Int)
     DQ=NewDataMatrix()
     DQ.A=A
     DQ.NumQueries=nq
@@ -51,7 +51,7 @@ function SVDModel(A::Array{Float64,2},nq::Int64,rank::Int64)
     #plotNew_RecPrec(LSI_TDM_Result.RecFinal,LSI_TDM_Result.PrecFinal,"LSI")
 end
 
-function SVDModel(Q_C::Corpus,D_C::Corpus,rank::Int64)
+function SVDModel(Q_C::Corpus,D_C::Corpus,rank::Int)
     #Q_c and D_c are the query and Document corpuses.
     PreProcess!(Q_C)
     PreProcess!(D_C)
@@ -74,7 +74,7 @@ function SVDModel(Q_C::Corpus,D_C::Corpus,rank::Int64)
     return r
 end
 
-function SVDModel(QueryNum::Int64,A::Array{Float64,2},NumQueries::Int64,rank::Int64)
+function SVDModel(QueryNum::Int,A::Array{Float64,2},NumQueries::Int,rank::Int)
     DQ=NewDataMatrix()
     DQ.A=A
     DQ.NumQueries=NumQueries
@@ -115,7 +115,7 @@ function SVDModel(QueryNum::Int64,A::Array{Float64,2},NumQueries::Int64,rank::In
 end
 
 
-function TrySVD(A::Array{Float64,2},k::Int64)
+function TrySVD(A::Array{Float64,2},k::Int)
     (U,S,V)=svd(A)
     A_k::Array{Float64,2}
     V_t=diagm(S)*V'
