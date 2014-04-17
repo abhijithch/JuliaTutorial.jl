@@ -22,12 +22,12 @@ end
 
 type NewDataMatrix
     A::Array{Float64,2}
-    NumQueries::Int64
+    NumQueries::Int
     NewDataMatrix()=new()
 end
 
 #Initializes the Results type with zeros
-function InitResults!(R::TMResults,nq::Int64,lt::Int64)
+function InitResults!(R::TMResults,nq::Int,lt::Int)
     R.Dr=zeros(nq,lt)
     R.Dt=zeros(nq,lt)
     R.Nr=zeros(nq,lt)
@@ -48,7 +48,7 @@ function CosTheta(q::Array{Float64,1},d::Array{Float64,1})
     return q'*d/(norm(q,2)*norm(d,2))
 end
 
-function FindResults(k::Int64,z::Int64,Costheta::Array{Float64,2},tol::Float64)
+function FindResults(k::Int,z::Int,Costheta::Array{Float64,2},tol::Float64)
     function testf1(x)
         x>tol
     end
