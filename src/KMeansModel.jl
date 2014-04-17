@@ -36,7 +36,7 @@ function KMeansModel(A::Array{Float64,2},NumQueries::Int,Clusters::Int)
         end
     end
     (KM_TDM_Result.RecFinal,KM_TDM_Result.PrecFinal)=average_RecPrec(KM_TDM_Result.Rec,KM_TDM_Result.Prec,qindex)
-    return KM_TDM_Result
+    return KM_TDM_Result.RecFinal,KM_TDM_Result.PrecFinal
 end
 
 function KMeansModel(QueryNum::Int,A::Array{Float64,2},NumQueries::Int,Clusters::Int)
@@ -75,7 +75,7 @@ function KMeansModel(QueryNum::Int,A::Array{Float64,2},NumQueries::Int,Clusters:
         end
     end
     (KM_1Query_Result.RecFinal,KM_1Query_Result.PrecFinal)=average_RecPrec(KM_1Query_Result.Rec,KM_1Query_Result.Prec,qindex)
-    return KM_1Query_Result
+    return KM_1Query_Result.RecFinal,KM_1Query_Result.PrecFinal
 end
 
 function KMeansModel(Q_C::Corpus,D_C::Corpus,Clusters::Int)

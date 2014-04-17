@@ -8,7 +8,7 @@ using PyPlot
 
 export PrepQueriesCorpus,PrepDocCorpus,PreProcess!,PrepTest
 export SVDModel,VSMModel,TrySVD
-export KMeansTDM
+export KMeansModel
 export plotNew_RecPrec,plotAdd_RecPrec,plot_DrDtNr
 export Results, NewDataCorpus, NewDataMatrix, Normalize, CosTheta, FindResults
 

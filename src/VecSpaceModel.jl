@@ -1,3 +1,4 @@
+T=PrepTest()
 
 function VSMModel(A::Array{Float64,2},nq::Int)
     DQ=NewDataMatrix()
