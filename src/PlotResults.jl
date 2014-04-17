@@ -1,5 +1,5 @@
 
-function plot_DrDtNr(Dr::Array{Float64,1},Dt::Array{Float64,1},Nr::Array{Float64,1},qNum::Int64,tol::Array{Float64,1})
+function plot_DrDtNr(Dr::Array{Float64,1},Dt::Array{Float64,1},Nr::Array{Float64,1},qNum::Int,tol::Array{Float64,1})
     fig = figure()
     p1=plot(tol,Dr,color="red",linewidth=2.0,linestyle="--")
     p2=plot(tol,Dt,color="blue",linewidth=2.0,linestyle="--")

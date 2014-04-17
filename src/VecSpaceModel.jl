@@ -1,5 +1,5 @@
 
-function VSMModel(A::Array{Float64,2},nq::Int64)
+function VSMModel(A::Array{Float64,2},nq::Int)
     DQ=NewDataMatrix()
     DQ.A=A
     DQ.NumQueries=nq
@@ -56,7 +56,7 @@ function VSMModel(Q_C::Corpus,D_C::Corpus)
     return r
 end
 
-function VSMModel(QueryNum::Int64,A::Array{Float64,2},NumQueries::Int64)
+function VSMModel(QueryNum::Int,A::Array{Float64,2},NumQueries::Int)
     DQ=NewDataMatrix()
     DQ.A=A
     DQ.NumQueries=NumQueries
