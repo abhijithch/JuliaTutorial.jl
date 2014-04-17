@@ -43,8 +43,8 @@ function plotAdd_RecPrec(Rec::Array{Float64,1},Prec::Array{Float64,1},strMethod:
     global PlotCount+=1
     PlotID=string("p",PlotCount)
     PlotID=plot(Rec,Prec,color=Colors[ColorCount],linewidth=2.0,linestyle="--",label=strMethod)
-    push!(PlotIDS,PlotID)
-    push!(MethodIDs,strMethod)
+    #push!(PlotIDS,PlotID)
+    #push!(MethodIDs,strMethod)
     #legend(PlotIDs,MethodIDs)
     legend(loc="upper right",fancybox="true")
 end

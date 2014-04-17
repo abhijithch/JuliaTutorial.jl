@@ -11,7 +11,7 @@ type TMResults
     Prec::Array{Float64,2}
     RecFinal::Array{Float64,1}
     PrecFinal::Array{Float64,1}    
-    Results()=new()
+    TMResults()=new()
 end
 
 type NewDataCorpus

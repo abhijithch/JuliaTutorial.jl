@@ -30,7 +30,7 @@ function VSMModel(A::Array{Float64,2},nq::Int64)
         end
     end
     (VSM_TDM_Result.RecFinal,VSM_TDM_Result.PrecFinal)=average_RecPrec(VSM_TDM_Result.Rec,VSM_TDM_Result.Prec,qindex)
-    return VSM_TDM_Result
+    return VSM_TDM_Result.RecFinal,VSM_TDM_Result.PrecFinal
 end
 
 function VSMModel(Q_C::Corpus,D_C::Corpus)
