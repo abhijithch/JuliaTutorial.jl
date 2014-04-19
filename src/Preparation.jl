@@ -41,6 +41,7 @@ end
 
 function PrepDocCorpus(dirname::String,DocType::Type)
     crps = DirectoryCorpus(dirname)
+    #Standardize all the documents to DocType
     standardize!(crps,DocType)
     return crps
 end

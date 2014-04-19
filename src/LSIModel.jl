@@ -114,7 +114,6 @@ function SVDModel(QueryNum::Int,A::Array{Float64,2},NumQueries::Int,rank::Int)
     #plotNew_RecPrec(vec(LSI_1Query_Result.Rec),vec(LSI_1Query_Result.Prec),"LSI")
 end
 
-
 function TrySVD(A::Array{Float64,2},k::Int)
     (U,S,V)=svd(A)
     A_k::Array{Float64,2}
@@ -125,3 +124,4 @@ function TrySVD(A::Array{Float64,2},k::Int)
     FN=norm(A-A_k)
     return FN
 end
+
