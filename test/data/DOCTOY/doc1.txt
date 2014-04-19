@@ -1,0 +1,4 @@
+It’s also important to point out that even though these arrays are generic, they’re not boxed: an Int8 array will take
+up much less memory than an Int64 array, and both will be laid out as continuous blocks of memory; Julia can deal
+seamlessly and generically with these different immediate types as well as pointer types like String.
+

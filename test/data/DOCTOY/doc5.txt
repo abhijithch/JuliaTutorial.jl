@@ -1,0 +1,3 @@
+Graphics. One of the big advantages of R over similar languages is the sophisticated graphics available in ggplot2
+or lattice. Work is underway on graphics models for Julia but, again, it is early days still.
+

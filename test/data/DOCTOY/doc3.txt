@@ -1,0 +1,5 @@
+Only later did I realize what makes Julia different from all the others. Julia breaks down the second wall — the wall
+between your high-level code and native assembly. Not only can you write code with the performance of C in Julia,
+you can take a peek behind the curtain of any function into its LLVM Intermediate Representation as well as its
+generated assembly code — all within the REPL. Check it out.
+

@@ -1,0 +1,5 @@
+To celebrate some of the amazing work that’s already been done to make Julia usable for day-to-day data analysis,
+I’d like to give a brief overview of the state of statistical programming in Julia. There are now several packages
+that, taken as a whole, suggest that Julia may really live up to its potential and become the next generation
+language for data analysis.
+

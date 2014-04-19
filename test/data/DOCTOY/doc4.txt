@@ -1,0 +1,5 @@
+Homoiconicity — the code can be operated on by other parts of the code. Again, R kind of has this too! Kind of,
+because I’m unaware of a good explanation for how to use it productively, and R’s syntax and scoping rules make it
+tricky to pull off. But I’m still excited to see it in Julia, because I’ve heard good things about macros and I’d like to
+appreciate them.
+
