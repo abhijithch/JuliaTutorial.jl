@@ -14,7 +14,7 @@ function Menu()
         #50 => {include("MatrixFactorizations.jl")}
         #51 => {include("TextMining.jl")}
         #52 => {include("RecSys.jl")}
-        49 => println("You can include the module by typing: using LinearAlgebra")
+        49 => println("You can include the module by typing: using JuliaTutorial.LinearAlgebra")
         50 => println("You can include the module by typing: using JuliaTutorial.MatrixFactoriations")
         51 => println("You can include the module by typing: using JuliaTutorial.TextMining")
         52 => println("You can include the module by typing: using JuliaTutorial.RecSys")
@@ -38,7 +38,7 @@ function ReadChoice()
     cc=readbytes(STDIN,1) #choice is ascii of the value enetered
     
     #Check is the value of choice is between 1 and 4, i.e., 48 to 52
-    cc=parseint("$cc")
+    cc=parseint("$(cc[1])")
     if cc < 49 || cc > 52
         Base.warn_once("Enter valid choice: 1,2,3,4")
         #println(choice)
