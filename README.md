@@ -1,6 +1,6 @@
 # JuliaTutorial
 
-[![Build Status](https://travis-ci.org/abhi123link/JuliaTutorial.jl.png)](https://travis-ci.org/abhi123link/JuliaTutorial.jl)
+[![Build Status](https://travis-ci.org/abhijithch/JuliaTutorial.jl.png)](https://travis-ci.org/abhi123link/JuliaTutorial.jl)
 
 This is a Julia based tutorial covering the following topics:
 
@@ -15,11 +15,11 @@ This package has each of the above mentioned topics as sub-modules. However as o
 This is an unregistered package, and can be installed in either of the following two ways:
 
 ```
-Pkg.clone(https://github.com/abhi123link/JuliaTutorial.jl.git)
+Pkg.clone(https://github.com/abhijithch/JuliaTutorial.jl.git)
 ```
 alternatively, this also could be directly cloned from github as follows,
 ```
-git clone https://github.com/abhi123link/JuliaTutorial.jl.git
+git clone https://github.com/abhijithch/JuliaTutorial.jl.git
 ```
 in which case the dependent packages will have to be installed. If installed through the package manager, ```Pkg.clone()``` the dependent packages would be automatically installed. 
 
