@@ -14,7 +14,7 @@ function Menu()
         #50 => {include("MatrixFactorizations.jl")}
         #51 => {include("TextMining.jl")}
         #52 => {include("RecSys.jl")}
-        49 => println("You can include the module by typing: using LinearAlgebra")
+        49 => println("You can include the module by typing: using JuliaTutorial.LinearAlgebra")
         50 => println("You can include the module by typing: using JuliaTutorial.MatrixFactoriations")
         51 => println("You can include the module by typing: using JuliaTutorial.TextMining")
         52 => println("You can include the module by typing: using JuliaTutorial.RecSys")
