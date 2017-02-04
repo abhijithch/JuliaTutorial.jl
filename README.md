@@ -15,7 +15,7 @@ This package has each of the above mentioned topics as sub-modules. However as o
 This is an unregistered package, and can be installed in either of the following two ways:
 
 ```
-Pkg.clone(https://github.com/abhijithch/JuliaTutorial.jl.git)
+Pkg.clone("https://github.com/abhijithch/JuliaTutorial.jl.git")
 ```
 alternatively, this also could be directly cloned from github as follows,
 ```
